@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Hepta+Slab&family=Inter:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hepta+Slab&family=Inter:wght@500&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -106,7 +106,7 @@ h1{
 }
 
 input {
-    height: 35px;
+    height: 40px;
     width: 250px;
     border-width: 1px;
     border-style: solid;
@@ -119,12 +119,57 @@ input {
     color: #fff;
 }
 
+#button:hover {
+    color: #20C982;
+    background-color: #fff;
+    height: 40px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #20C982;
+    border-radius: 5px;
+}
+
 select {
     color: #939393;
-    height: 35px;
+    height: 40px;
     width: 250px;
     border-width: 1px;
     border-style: solid;
     border-color: #939393;
     border-radius: 5px;
+}
+
+
+/*Aqui começa simulação.html*/
+
+.foto {
+    height: 665px;
+}
+
+button{
+    color: #20C982;
+    height: 40px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #20C982;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #20C982;
+    border-color: #F9F9F9;
+}
+
+.p-valores {
+    font-size: 17px;
+    padding: 25px 0px;
+}
+
+.tdr {
+    margin-top: 55px;
+    font-size: 14px;
 }
