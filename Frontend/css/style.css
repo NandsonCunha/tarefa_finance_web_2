@@ -77,6 +77,34 @@ h1{
     margin-left: 50px;
 }
 
+.input-group {
+    position: relative;
+}
+
+.input {
+    box-sizing: border-box;
+    outline: none;
+}
+
+.valor {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    font-size: 14px;
+    padding: 0px 5px;
+    transition: 0.3s;
+    pointer-events: none;
+    color: #939393;
+
+}
+
+.input:focus + .valor {
+    top: -10px;
+    color: #20C982;
+    background-color: #F9F9F9;
+
+}
+
 input {
     height: 35px;
     width: 250px;
