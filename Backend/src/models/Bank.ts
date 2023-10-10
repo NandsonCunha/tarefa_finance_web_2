@@ -13,7 +13,8 @@ export const Bank = sequelize.define<BankInstance>("Bank",{
         autoIncrement:true
     },
     name:{			  
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        allowNull:false
     },
     anual_interest_rate:{                  
         type:DataTypes.FLOAT,
