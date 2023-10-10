@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/findAllBanks',BankController.findAllDataBankController)
 
-router.post('/bank',BankController.findOneDataBankController)
+router.get('/bank/:id',BankController.findOneDataBankController)
 
 router.post('/financing-simulation',BankController.financingSimulationController)
 

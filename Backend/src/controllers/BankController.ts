@@ -13,7 +13,7 @@ export const findAllDataBankController = async (request:Request,response:Respons
 
 
 export const findOneDataBankController = async (request:Request,response:Response) =>{
-        const bank = await ServicesBank.findOneDataBankService(request.body.id)
+        const bank = await ServicesBank.findOneDataBankService(request.params.id)
         if(bank instanceof Error){
             response.json({error:bank.message}).status(400)
         }
