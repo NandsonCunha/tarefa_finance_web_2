@@ -1,6 +1,5 @@
 import express,{Request,Response} from 'express'
 import *  as ServicesBank from '../services/FinancingSimulationService'
-import { Bank } from '../models/Bank'
 
 export const findAllDataBankController = async (request:Request,response:Response) =>{
         const dataBank =  await ServicesBank.findAllDataBanksService()
