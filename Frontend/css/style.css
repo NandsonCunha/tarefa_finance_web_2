@@ -38,6 +38,7 @@ h1{
   }
 
 .div-info, .div-form {
+    height: 100%;
     width: 700px;
     padding: 20px;
     border: 1px, solid, black;
@@ -54,6 +55,7 @@ h1{
 }
 
 .div-form {
+    height: 100%;
     padding-bottom: 222px;
     padding-top: 100px;
     background: #F9F9F9;
