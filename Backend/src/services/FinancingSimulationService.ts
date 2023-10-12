@@ -1,8 +1,8 @@
 import { Bank } from "../models/Bank";
-
-
+import { BRL } from "../helpers/BrMoney";
+import {factorr,monthlyInterestRatee,monthlyPaymentt} from '../helpers/CalcFinancing'
 export const findAllDataBanksService = async () => {
-    const dataBanks = await Bank.findAll()
+    const dataBanks = await Bank.findAll({attributes:{exclude:['anual_interest_rate','max_installments']}})
     if(!dataBanks){
         return new Error('Não Há Dados')
     }
@@ -19,6 +19,22 @@ export const findOneDataBankService = async (id:string | number) => {
         }
 } 
 
-export const performFinancingSimulation = () => {
+export const performFinancingSimulation = async (valueFinancing:number, name:string, qtdInstallments:number) => {
+    if(valueFinancing && name && qtdInstallments){
+        const nameBank = await Bank.findOne({where:{name}})
+        if(nameBank && (Number.isInteger(qtdInstallments))) {
+            if (qtdInstallments > nameBank.max_installments) {
+                return new Error('O número de parcelas escolhido excede o limite do banco.');
+            }         
 
+            const monthPaymet = monthlyPaymentt(monthlyInterestRatee(nameBank.anual_interest_rate),valueFinancing,factorr(monthlyInterestRatee(nameBank.anual_interest_rate),qtdInstallments))
+            return {
+                monthlyPayment: BRL(monthPaymet),
+                totalAmount: BRL(monthPaymet * qtdInstallments),
+                bankName: nameBank.name,
+                qtdInstallments:qtdInstallments
+            };
+        }
+    }
+    return new Error('Informe os dados corretamente');
 }

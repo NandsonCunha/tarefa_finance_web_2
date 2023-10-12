@@ -22,6 +22,13 @@ export const findOneDataBankController = async (request:Request,response:Respons
             }
         }
 
-export const financingSimulationController = (request:Request,response:Response) =>{
-    
+export const financingSimulationController = async (request:Request,response:Response) =>{
+    const {valueFinancing,name,qtdInstallments} = request.body
+    const  calcValues = await ServicesBank.performFinancingSimulation(valueFinancing,name,parseInt(qtdInstallments))
+    if(calcValues instanceof Error){
+        response.json({error:calcValues.message}).status(400)
+    }
+    else{
+        response.json({calc:calcValues}).status(200)
+    }
 }
