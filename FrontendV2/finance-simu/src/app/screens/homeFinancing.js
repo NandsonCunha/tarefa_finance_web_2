@@ -44,7 +44,7 @@ export default function HomePage() {
                 <option> Itaú</option>
                 <option> Santander</option>
                 <option> Sicoob</option>
-                <option> Inte</option>
+                <option> Inter</option>
                 <option> Original</option>
                 <option> Nubank</option>
                 <option> Picpay</option>

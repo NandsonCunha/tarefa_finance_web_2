@@ -98,12 +98,13 @@ h1{
     color: #939393;
 
 }
-
+.input:focus{
+    border: 2px solid #20C982;
+}
 .input:focus + .valor {
     top: -10px;
     color: #20C982;
     background-color: #F9F9F9;
-
 }
 
 input {
@@ -113,6 +114,8 @@ input {
     border-style: solid;
     border-color: #20C982;
     border-radius: 5px;
+    padding-left: 0.5rem;
+    background-color: #F9F9F9;
 }
 
 #button {
