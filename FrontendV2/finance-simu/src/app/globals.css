@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Hepta+Slab&family=Inter:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo {
+    margin-bottom: 60px;
+    height: 80px;
+    width: 120px;
+}
+.div-principal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-content: center;
+}
+
+p {
+    color: #939393;
+}
+
+h1{
+    color: #4E4E4E;
+}
+
+.cor-fin {
+    color: #20C982;
+  }
+
+.div-info, .div-form {
+    height: 100%;
+    width: 700px;
+    padding: 20px;
+    border: 1px, solid, black;
+   /* border-width: 1px;
+    border-style: solid;
+    border-color: black;*/
+}
+
+.div-info {
+    margin-left: 150px;
+    padding-bottom: 50px;
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
+.div-form {
+    height: 100%;
+    padding-bottom: 222px;
+    padding-top: 100px;
+    background: #F9F9F9;
+}
+.emoji {
+    height: 60px;
+    width: 60px;
+}
+
+.carro {
+    margin: 50px;
+    height: 210px;
+    width: 400px;
+}
+
+.form-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    margin-left: 50px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input {
+    box-sizing: border-box;
+    outline: none;
+}
+
+.valor {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    font-size: 14px;
+    padding: 0px 5px;
+    transition: 0.3s;
+    pointer-events: none;
+    color: #939393;
+
+}
+
+.input:focus + .valor {
+    top: -10px;
+    color: #20C982;
+    background-color: #F9F9F9;
+
+}
+
+input {
+    height: 40px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #20C982;
+    border-radius: 5px;
+}
+
+#button {
+    background-color: #20C982;
+    color: #fff;
+}
+
+#button:hover {
+    color: #20C982;
+    background-color: #fff;
+    height: 40px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #20C982;
+    border-radius: 5px;
+}
+
+select {
+    color: #939393;
+    height: 40px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #939393;
+    border-radius: 5px;
+}
+
+
+/*Aqui começa simulação.html*/
+
+.foto {
+    height: 665px;
+}
+
+button{
+    color: #20C982;
+    height: 40px;
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #20C982;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #20C982;
+    border-color: #F9F9F9;
+}
+
+.p-valores {
+    font-size: 17px;
+    padding: 25px 0px;
+}
+
+.tdr {
+    margin-top: 55px;
+    font-size: 14px;
+}
