@@ -18,10 +18,12 @@ body {
     width: 120px;
 }
 .div-principal {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     align-content: center;
+    height: 100vh;
 }
 
 p {
@@ -38,7 +40,7 @@ h1{
 
 .div-info, .div-form {
     height: 100%;
-    width: 700px;
+    width: 50%;
     padding: 20px;
     border: 1px, solid, black;
    /* border-width: 1px;
@@ -132,6 +134,7 @@ input {
     border-style: solid;
     border-color: #20C982;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 select {
@@ -176,4 +179,9 @@ button:hover {
 .tdr {
     margin-top: 55px;
     font-size: 14px;
+}
+
+@media screen and (min-width:1528px){
+
+
 }

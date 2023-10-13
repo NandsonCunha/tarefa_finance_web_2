@@ -2,7 +2,7 @@ import { Bank } from "../models/Bank";
 import { BRL } from "../helpers/BrMoney";
 import {factorr,monthlyInterestRatee,monthlyPaymentt} from '../helpers/CalcFinancing'
 export const findAllDataBanksService = async () => {
-    const dataBanks = await Bank.findAll({attributes:{exclude:['anual_interest_rate','max_installments']}})
+    const dataBanks = await Bank.findAll({attributes:{exclude:['anual_interest_rate']}})
     if(!dataBanks){
         return new Error('Não Há Dados')
     }

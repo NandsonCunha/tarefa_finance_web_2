@@ -4,10 +4,17 @@ import { banksData } from '../src/helpers/BankData'
 import { Bank } from "./models/Bank";  
 import routersBank from '../src/routers/BankRouter'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import { sequelize } from "./database/mysql";
 dotenv.config()
 const server = express()
-
+const corsOptions = {
+  origin: 'http://localhost:3000', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
+  credentials: true, 
+  optionsSuccessStatus: 200
+};
+server.use(cors(corsOptions))
 server.use(express.urlencoded({extended:true}))
 server.use(routersBank)
 server.use((req:Request,res:Response)=>{

@@ -1,7 +1,39 @@
-// pages/index.js
 import '../globals.css';
+import React, { useEffect, useState } from 'react';
+import { Request } from '@/helpers/Request';
 
 export default function HomePage() {
+  const [bancos, setBancos] = useState([]);
+  const [selectedBanco, setSelectedBanco] = useState(null);
+  const [maxInstallments, setMaxInstallments] = useState(null);
+
+  useEffect(() => {
+    Request('get', 'findAllBanks', '')
+      .then(response => {
+        setBancos(response.data)
+      })
+      .catch(error => console.log(error));
+  }, []);
+
+  const handleBancoChange = e => {
+    const bancoId = e.target.value;
+    setSelectedBanco(bancoId);
+    setMaxInstallments(bancos.find(banco => banco.id == bancoId).max_installments);
+    Request('get', `bank/${bancoId}`,'')
+      .then(response => {
+        console.log(response.bank);
+      })
+      .catch(error => console.log(error));
+  };
+
+  const renderInstallmentsOptions = () => {
+    const options = [];
+    for (let i = 1; i <= maxInstallments; i++) {
+      options.push(<option key={i} value={i}>{i}</option>);
+    }
+    return options;
+  };
+
   return (
     <div>
       <main>
@@ -34,38 +66,22 @@ export default function HomePage() {
               </div>
 
               <br />
-              <select required>
+              <select required onChange={handleBancoChange}>
                 <option selected disabled value="">
                   Selecione
                 </option>
-                <option> Banco do Brasil</option>
-                <option> Caixa Econômica Federal </option>
-                <option> Bradesco</option>
-                <option> Itaú</option>
-                <option> Santander</option>
-                <option> Sicoob</option>
-                <option> Inter</option>
-                <option> Original</option>
-                <option> Nubank</option>
-                <option> Picpay</option>
+                {bancos.map(banco => (
+                  <option key={banco.id} value={banco.id}>
+                    {banco.name}
+                  </option>
+                ))}
               </select>
               <br />
               <select required>
                 <option selected disabled value="">
                   Selecione
                 </option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
+                {maxInstallments && renderInstallmentsOptions()}
               </select>
               <br />
               <input id="button" type="submit" value="Simular Financiamento" />
