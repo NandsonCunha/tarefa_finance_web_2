@@ -67,7 +67,7 @@ export default function HomePage() {
 
               <br />
               <select required onChange={handleBancoChange}>
-                <option selected disabled value="">
+                <option  disabled value="">
                   Selecione
                 </option>
                 {bancos.map(banco => (
@@ -78,7 +78,7 @@ export default function HomePage() {
               </select>
               <br />
               <select required>
-                <option selected disabled value="">
+                <option  disabled value="">
                   Selecione
                 </option>
                 {maxInstallments && renderInstallmentsOptions()}
