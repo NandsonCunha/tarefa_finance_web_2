@@ -9,13 +9,18 @@ export default function HomePage() {
   const [submitBanco,setSubmitBanco] = useState('')
   const [installMents,setInstallMents] = useState('')
   const [maxInstallments, setMaxInstallments] = useState(null);
+  const [changeBankShow,setChangeBankShow] = useState('')
+  const [swap, setSwap] = useState(false)
+  const [animated, setAnimated] = useState(false)
   const navigate = useNavigate()
+
   const [value,setValue] = useState('')
 
   useEffect(() => {
     Request('get', 'findAllBanks', '')
       .then(response => {
         setBancos(response.data)
+        setSwap(false)
       })
       .catch(error => console.log(error));
   }, []);
@@ -23,14 +28,19 @@ export default function HomePage() {
   const handleBancoChange = e => {
     const bancoId = e.target.value;
     if(bancoId !== ''){
+      setSwap(true)
+      setAnimated(true)
       setSelectedBanco(bancoId);
       setSubmitBanco(bancos.find(banco => banco.id == bancoId).name)
       setMaxInstallments(bancos.find(banco => banco.id == bancoId).max_installments);
       Request('get', `bank/${bancoId}`,'')
         .then(response => {
-          console.log(response.bank);
+           setChangeBankShow(response.bank);
         })
         .catch(error => console.log(error));
+        setTimeout(() => {
+          setAnimated(false);
+        }, 500)
     }
      
   };
@@ -60,7 +70,23 @@ export default function HomePage() {
       <main>
         <div className="div-principal">
           <div className="div-info">
-            <img className="logo" src="/img/logo_verde.svg" alt="" />
+          <img className="logo" src="/img/logo_verde.svg" alt="" />
+            {swap ?  
+            
+            <>
+            <div className={`${animated ? 'animated fadeInLeft' : ''}`}>
+               <h1 className='ln'>Detalhes do Financiamento:
+                  <br />
+              <span className="cor-fin">{changeBankShow.name}</span>
+            </h1>
+            <p className="p-valores">Taxa de juros anual:</p>
+                                <h1>{changeBankShow.anual_interest_rate}%</h1>
+                                <p className="p-valores">Máximo de parcelas:</p>
+                                <h1>{changeBankShow.max_installments}</h1>
+                                </div>
+            </> : 
+            
+            <>
             <h1>
               Simule seu o <br />
               <span className="cor-fin">financiamento</span>
@@ -71,6 +97,8 @@ export default function HomePage() {
               veículo.
             </p>
             <img className="carro" src="../img/carro.png" alt="" />
+            </>}
+           
           </div>
           <div className="div-form">
             <img className="emoji" src="../img/emoji.svg" alt="" />
