@@ -98,7 +98,6 @@ h1{
     transition: 0.3s;
     pointer-events: none;
     color: #939393;
-
 }
 .input:focus{
     border: 2px solid #20C982;
@@ -108,7 +107,6 @@ h1{
     color: #20C982;
     background-color: #F9F9F9;
 }
-
 input {
     height: 40px;
     width: 250px;

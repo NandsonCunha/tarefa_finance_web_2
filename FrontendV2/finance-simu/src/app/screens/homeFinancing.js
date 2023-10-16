@@ -1,11 +1,16 @@
 import '../globals.css';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Request } from '@/helpers/Request';
-
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 export default function HomePage() {
   const [bancos, setBancos] = useState([]);
-  const [selectedBanco, setSelectedBanco] = useState(null);
+  const [selectedBanco, setSelectedBanco] = useState('');
+  const [submitBanco,setSubmitBanco] = useState('')
+  const [installMents,setInstallMents] = useState('')
   const [maxInstallments, setMaxInstallments] = useState(null);
+  const navigate = useNavigate()
+  const [value,setValue] = useState('')
 
   useEffect(() => {
     Request('get', 'findAllBanks', '')
@@ -17,15 +22,21 @@ export default function HomePage() {
 
   const handleBancoChange = e => {
     const bancoId = e.target.value;
-    setSelectedBanco(bancoId);
-    setMaxInstallments(bancos.find(banco => banco.id == bancoId).max_installments);
-    Request('get', `bank/${bancoId}`,'')
-      .then(response => {
-        console.log(response.bank);
-      })
-      .catch(error => console.log(error));
+    if(bancoId !== ''){
+      setSelectedBanco(bancoId);
+      setSubmitBanco(bancos.find(banco => banco.id == bancoId).name)
+      setMaxInstallments(bancos.find(banco => banco.id == bancoId).max_installments);
+      Request('get', `bank/${bancoId}`,'')
+        .then(response => {
+          console.log(response.bank);
+        })
+        .catch(error => console.log(error));
+    }
+     
   };
-
+  const handleOption = (e) => {
+      setInstallMents(e.target.value)    
+  }
   const renderInstallmentsOptions = () => {
     const options = [];
     for (let i = 1; i <= maxInstallments; i++) {
@@ -33,7 +44,17 @@ export default function HomePage() {
     }
     return options;
   };
-
+ 
+  const data = {
+    valueFinancing:value,
+    name:submitBanco,
+    qtdInstallments:installMents
+  }
+  const handleSubmit = () =>{
+    Request('post','financing-simulation',data).then(response => {
+      navigate('/simulation',{state:{values:response.calc}})
+    }).catch(error => console.log(error))
+  }
   return (
     <div>
       <main>
@@ -57,19 +78,23 @@ export default function HomePage() {
               Preencha os campos e simule <br /> o seu financiamento.
             </p>
             <br />
-            <form className="form-principal" action="">
+            <form className="form-principal" action="" method='post' onSubmit={handleSubmit}>
               <div className="input-group">
-                <input className="input" type="number" name="valor" required />
-                <label className="valor" htmlFor="valor">
+                <input 
+                className='input' 
+                type="number" 
+                name="valor"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                required />
+                <label className='valor' htmlFor="valor">
                   Valor
                 </label>
               </div>
 
               <br />
-              <select required onChange={handleBancoChange}>
-                <option  disabled value="">
-                  Selecione
-                </option>
+              <select required onChange={handleBancoChange} value={selectedBanco}>
+                <option value="">Selecione um banco</option>
                 {bancos.map(banco => (
                   <option key={banco.id} value={banco.id}>
                     {banco.name}
@@ -77,11 +102,11 @@ export default function HomePage() {
                 ))}
               </select>
               <br />
-              <select required>
-                <option  disabled value="">
-                  Selecione
+              <select required onChange={handleOption} value={installMents}>
+                <option value=''>
+                  Em quantos meses? 
                 </option>
-                {maxInstallments && renderInstallmentsOptions()}
+                {(maxInstallments && renderInstallmentsOptions())}
               </select>
               <br />
               <input id="button" type="submit" value="Simular Financiamento" />
