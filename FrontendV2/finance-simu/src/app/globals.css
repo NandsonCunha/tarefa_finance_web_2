@@ -62,7 +62,7 @@ h1{
 
 .div-form {
     height: 100%;
-    padding-bottom: 100%;
+    padding-bottom: 500px;
     padding-top: 100px;
     background: #F9F9F9;
 }
@@ -154,6 +154,7 @@ select {
 /*Aqui começa simulação.html*/
 
 .foto {
+    padding-left: 250px;
     height: 665px;
 }
 
@@ -291,6 +292,9 @@ button:hover {
     .div-info-simu{
         padding-left: 40px;
     }
+    .foto{
+        display: none;
+    }
 
     
 }
@@ -306,5 +310,8 @@ button:hover {
     }
     .div-info{
         margin-left: 60px;
+    }
+    .foto{
+        display: none;
     }
 }
