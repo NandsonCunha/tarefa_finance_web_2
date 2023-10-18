@@ -250,6 +250,7 @@ button:hover {
  .ln{
    line-height: 3.2rem;  
  }
+
  @media screen and (max-width:628px){
     .div-principal {
         display: flex;
@@ -282,19 +283,23 @@ button:hover {
     .logo {
         margin-bottom: 0px;
     }
-    
+    .div-info-simu{
+        padding-left: 40px;
     }
+
     
-    @media (min-width: 500px) and (max-width: 1000px) {
-        .carro {
-            margin: 30px;
-            height: 110px;
-            width: 200px;
-        }
-        .form-principal{
-            margin-left: 0px;
-        }
-        .div-info{
-            margin-left: 60px;
-        }
+}
+    
+@media (min-width: 500px) and (max-width: 1000px) {
+    .carro {
+        margin: 30px;
+        height: 110px;
+        width: 200px;
     }
+    .form-principal{
+        margin-left: 0px;
+    }
+    .div-info{
+        margin-left: 60px;
+    }
+}

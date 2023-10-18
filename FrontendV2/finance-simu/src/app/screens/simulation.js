@@ -10,7 +10,7 @@ export default function Simulation  ()  {
             <body>
                 <main>
                     <div className="div-principal">
-                        <div className="div-info">
+                        <div className="div-info-simu">
                             <img className="logo" src="../img/logo_verde.svg" alt="" />
                             <div className="div-valores">
                                 <p className="p-valores">Valor das suas parcelas:</p>
